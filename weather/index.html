@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Weather Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fas fa-cloud-sun"></i>
+      <span>WeatherHub</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="#" class="nav-link active" data-view="current">
+        <i class="fas fa-cloud-sun"></i>
+        <span>Current Weather</span>
+      </a>
+      <a href="#" class="nav-link" data-view="forecast">
+        <i class="fas fa-calendar"></i>
+        <span>7-Day Forecast</span>
+      </a>
+      <a href="#" class="nav-link" data-view="hourly">
+        <i class="fas fa-clock"></i>
+        <span>Hourly Forecast</span>
+      </a>
+      <a href="#" class="nav-link" data-view="alerts">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Weather Alerts</span>
+      </a>
+      <a href="#" class="nav-link" data-view="maps">
+        <i class="fas fa-map"></i>
+        <span>Weather Maps</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <div class="search-container">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchCity" placeholder="Search city or coordinates..." class="search-input">
+          <button id="searchBtn" class="search-btn">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="geoBtn" class="icon-btn" title="Use my location">
+          <i class="fas fa-location-dot"></i>
+        </button>
+        <button id="themeToggle" class="icon-btn" title="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="unitsToggle" class="icon-btn" title="Toggle units">
+          <span>°C</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- View Container -->
+    <div class="view-container">
+      <!-- Current Weather View -->
+      <div id="currentView" class="view active">
+        <div class="current-weather-section">
+          <div class="location-info">
+            <h1 id="cityName">Loading...</h1>
+            <p id="dateTime" class="date-time"></p>
+          </div>
+          
+          <div class="weather-cards-grid">
+            <!-- Main Weather Card -->
+            <div class="weather-card main-card">
+              <div class="weather-icon-large">
+                <i id="weatherIcon" class="fas fa-cloud"></i>
+              </div>
+              <div class="weather-temp">
+                <span id="temperature" class="temp">--</span>
+                <span class="unit">°C</span>
+              </div>
+              <p id="weatherDescription" class="weather-desc">Loading...</p>
+              <p id="feelsLike" class="feels-like">Feels like --°C</p>
+            </div>
+
+            <!-- Weather Details Grid -->
+            <div class="weather-details-grid">
+              <div class="detail-card">
+                <div class="detail-header">
+                  <i class="fas fa-droplet"></i>
+                  <span>Humidity</span>
+                </div>
+                <p id="humidity" class="detail-value">--%</p>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-header">
+                  <i class="fas fa-wind"></i>
+                  <span>Wind Speed</span>
+                </div>
+                <p id="windSpeed" class="detail-value">-- m/s</p>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-header">
+                  <i class="fas fa-gauge"></i>
+                  <span>Pressure</span>
+                </div>
+                <p id="pressure" class="detail-value">-- mb</p>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-header">
+                  <i class="fas fa-eye"></i>
+                  <span>Visibility</span>
+                </div>
+                <p id="visibility" class="detail-value">-- km</p>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-header">
+                  <i class="fas fa-sun"></i>
+                  <span>UV Index</span>
+                </div>
+                <p id="uvIndex" class="detail-value">--</p>
+              </div>
+
+              <div class="detail-card">
+                <div class="detail-header">
+                  <i class="fas fa-cloud-rain"></i>
+                  <span>Precipitation</span>
+                </div>
+                <p id="precipitation" class="detail-value">-- mm</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sun/Moon Times -->
+          <div class="sun-moon-section">
+            <div class="sun-card">
+              <i class="fas fa-sunrise"></i>
+              <span>Sunrise</span>
+              <p id="sunrise">--:--</p>
+            </div>
+            <div class="sun-card">
+              <i class="fas fa-sunset"></i>
+              <span>Sunset</span>
+              <p id="sunset">--:--</p>
+            </div>
+            <div class="sun-card">
+              <i class="fas fa-moon"></i>
+              <span>Moonrise</span>
+              <p id="moonrise">--:--</p>
+            </div>
+            <div class="sun-card">
+              <i class="fas fa-moon"></i>
+              <span>Moonset</span>
+              <p id="moonset">--:--</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7-Day Forecast View -->
+      <div id="forecastView" class="view">
+        <h2 class="section-title">7-Day Forecast</h2>
+        <div id="forecastCards" class="forecast-grid">
+          <!-- Forecast cards will be generated here -->
+        </div>
+      </div>
+
+      <!-- Hourly Forecast View -->
+      <div id="hourlyView" class="view">
+        <h2 class="section-title">Hourly Forecast (24H)</h2>
+        <div id="hourlyCards" class="hourly-scroll">
+          <!-- Hourly cards will be generated here -->
+        </div>
+      </div>
+
+      <!-- Weather Alerts View -->
+      <div id="alertsView" class="view">
+        <h2 class="section-title">Weather Alerts</h2>
+        <div id="alertsContainer" class="alerts-container">
+          <!-- Alerts will be displayed here -->
+        </div>
+      </div>
+
+      <!-- Weather Maps View -->
+      <div id="mapsView" class="view">
+        <h2 class="section-title">Weather Maps</h2>
+        <div class="maps-grid">
+          <div class="map-card">
+            <img src="https://tile.openweathermap.org/map/precipitation_new/10/10/10.png?appid=a54c58d6e01d04bf9a7cc8ce1f3b1d3d" alt="Precipitation Map" onerror="this.src='https://via.placeholder.com/600x400?text=Precipitation+Map'">
+            <h3>Precipitation Map</h3>
+          </div>
+          <div class="map-card">
+            <img src="https://tile.openweathermap.org/map/clouds_new/10/10/10.png?appid=a54c58d6e01d04bf9a7cc8ce1f3b1d3d" alt="Cloud Map" onerror="this.src='https://via.placeholder.com/600x400?text=Cloud+Map'">
+            <h3>Cloud Map</h3>
+          </div>
+          <div class="map-card">
+            <img src="https://tile.openweathermap.org/map/temp_new/10/10/10.png?appid=a54c58d6e01d04bf9a7cc8ce1f3b1d3d" alt="Temperature Map" onerror="this.src='https://via.placeholder.com/600x400?text=Temperature+Map'">
+            <h3>Temperature Map</h3>
+          </div>
+          <div class="map-card">
+            <img src="https://tile.openweathermap.org/map/wind_new/10/10/10.png?appid=a54c58d6e01d04bf9a7cc8ce1f3b1d3d" alt="Wind Map" onerror="this.src='https://via.placeholder.com/600x400?text=Wind+Map'">
+            <h3>Wind Map</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
