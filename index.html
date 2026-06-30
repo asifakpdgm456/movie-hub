@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Hub - Watch Movies Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>🎬 Movie Hub</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search movies..." class="search-input">
+      <button id="searchBtn" class="search-btn">🔍</button>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="action">Action</button>
+  <button class="filter-btn" data-filter="drama">Drama</button>
+  <button class="filter-btn" data-filter="comedy">Comedy</button>
+  <button class="filter-btn" data-filter="thriller">Thriller</button>
+  <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
+</nav>
+
+<section class="movies-container">
+  <div class="movies" id="moviesGrid">
+    <!-- Movies will be loaded here dynamically -->
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Movie Hub | All rights reserved</p>
+  <p>Disclaimer: This is a demo website. All movie data is for educational purposes.</p>
+</footer>
+
+<!-- Modal for movie details -->
+<div id="movieModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
